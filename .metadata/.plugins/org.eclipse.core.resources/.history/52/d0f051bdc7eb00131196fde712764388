@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#00000000">
+	
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="10dp">
+        
+        <ImageButton
+            android:src="@drawable/camera"
+            android:id="@+id/CameraButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_alignParentRight="true"
+            android:maxWidth="75dp"  
+  			android:maxHeight="75dp"
+  			android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:onClick="ColorBlobSetup"
+            />
+        
+        <ImageButton 
+		    android:id="@+id/remote" 
+		    android:src="@drawable/remote"
+		    android:layout_height="wrap_content"
+		    android:layout_width="wrap_content"
+		    android:layout_margin="10dp"
+		    android:background="#00000000"
+		    android:scaleType="fitCenter"
+		    android:layout_alignParentLeft="true"
+		    android:onClick="menuAct"
+		    />    
+		    
+    </RelativeLayout>  
+    
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal"
+		android:paddingTop="20dp">
+		<TextView
+			android:text="@string/inte_label"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignParentLeft="true"
+			android:paddingLeft="20dp"
+			android:textSize="20sp"
+			/>
+
+		<TextView
+		    android:id="@+id/LuxValue"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_centerHorizontal="true"
+		    android:text="0"
+		    android:textSize="20sp" />		
+
+		<TextView
+			android:text="@string/lux_label"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignParentRight="true"
+			android:paddingRight="20dp"
+			android:textSize="20sp"
+			/>
+	</RelativeLayout>
+	
+	<RelativeLayout
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal"
+		android:paddingTop="20dp">
+		<TextView
+			android:text="@string/temp_label"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:paddingLeft="20dp"
+			android:layout_alignParentLeft="true"
+			android:textSize="20sp"
+			/>
+		<TextView
+			android:id="@+id/TempValue"
+			android:text="0"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_centerHorizontal="true"
+			android:textSize="20sp"
+			/>
+		<TextView
+			android:text="@string/cel_label"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:paddingRight="20dp"
+			android:layout_alignParentRight="true"
+			android:textSize="20sp"
+			/>
+	</RelativeLayout>
+
+	<RelativeLayout
+	    android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal"
+		android:gravity="center_horizontal"
+		android:paddingTop="20dp">
+
+		<NumberPicker
+		    android:id="@+id/userLux"
+		    android:layout_width="100dp"
+		    android:layout_height="wrap_content"
+		    android:layout_alignParentLeft="true"
+		    android:layout_marginLeft="40dp"/>
+		
+		<NumberPicker
+		    android:id="@+id/userTemp"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content" 
+		    android:layout_alignParentRight="true"
+		    android:layout_marginRight="40dp"/>
+			
+	</RelativeLayout>
+	
+	<RelativeLayout
+	    android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal"
+		android:gravity="center_horizontal">
+
+		<TextView
+		    android:text="@string/lux_label"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_alignParentLeft="true"
+		    android:layout_marginLeft="75dp"
+		    android:textSize="15sp"/>
+		
+		<TextView
+		    android:text="@string/cel_label"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_alignParentRight="true"
+		    android:layout_marginRight="55dp"
+		    android:textSize="15sp"/>
+			
+	</RelativeLayout>
+	
+	<ToggleButton
+			android:id="@+id/ToggleAuto"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_margin="10dp"
+			android:textOff="Auto mode is OFF"
+			android:textOn="Auto mode is ON"
+			android:layout_gravity="center_horizontal"
+			/>
+</LinearLayout>

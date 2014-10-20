@@ -1,0 +1,102 @@
+package rpl.shroomIOIO;
+
+import ioio.lib.api.DigitalOutput;
+import ioio.lib.api.PwmOutput;
+import ioio.lib.api.exception.ConnectionLostException;
+import ioio.lib.util.BaseIOIOLooper;
+import ioio.lib.util.IOIOLooper;
+import ioio.lib.util.android.IOIOActivity;
+import android.os.Bundle;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.ImageButton;
+import android.widget.SeekBar;
+import android.widget.ToggleButton;
+
+public class SetupColorCode extends IOIOActivity {
+
+	private SeekBar seekBar_;
+	private ToggleButton buttonGlobal_;
+	private ImageButton buttonAC_;
+	private ImageButton buttonTV_;
+	private ImageButton buttonCurt_;
+	private ImageButton buttonLamp_;
+	public Integer ACStatus_;
+	public Integer TVStatus_;
+	public Integer CurtStatus_;
+	public Integer lampStatus_;
+	public Integer globalStatus_;
+	SharedPreferences prefAC_;
+	SharedPreferences prefTV_;
+	SharedPreferences prefCurt_;
+	SharedPreferences prefLamp_;
+	SharedPreferences prefGlobal_;
+	
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.setup_color_code);
+		// Show the Up button in the action bar.
+		setupActionBar();
+		
+		seekBar_ = (SeekBar) findViewById(R.id.SeekBar);
+		buttonAC_ = (ImageButton) findViewById(R.id.ac);
+		buttonTV_ = (ImageButton) findViewById(R.id.tv);
+		buttonCurt_ = (ImageButton) findViewById(R.id.curtain);
+		buttonLamp_ = (ImageButton) findViewById(R.id.lamp);
+		buttonGlobal_ = (ToggleButton) findViewById(R.id.global);
+	
+		//enableUi(false);
+	}
+	
+
+	/**
+	 * Set up the {@link android.app.ActionBar}.
+	 */
+	private void setupActionBar() {
+
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+
+	}
+	
+	/*
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.menu, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			// This ID represents the Home or Up button. In the case of this
+			// activity, the Up button is shown. Use NavUtils to allow users
+			// to navigate up one level in the application structure. For
+			// more details, see the Navigation pattern on Android Design:
+			//
+			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
+			//
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+	
+	private void enableUi(final boolean enable) {
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				toggleGlobal_.setEnabled(enable);
+				buttonAC_.setEnabled(enable);
+				buttonTV_.setEnabled(enable);
+				buttonCurt_.setEnabled(enable);
+				buttonLamp_.setEnabled(enable);
+			}
+		});
+	}*/
+}

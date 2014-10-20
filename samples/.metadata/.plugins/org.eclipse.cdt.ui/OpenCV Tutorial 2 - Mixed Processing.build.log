@@ -1,0 +1,7 @@
+17:14:13 **** Auto Build of configuration Default for project OpenCV Tutorial 2 - Mixed Processing ****
+"D:\\Development\\android-ndk-r9d\\ndk-build.cmd" 
+jni/Android.mk:5: ../../sdk/native/jni/OpenCV.mk: No such file or directory
+make.exe: *** No rule to make target `../../sdk/native/jni/OpenCV.mk'.  Stop.
+
+17:14:13 Build Finished (took 182ms)
+

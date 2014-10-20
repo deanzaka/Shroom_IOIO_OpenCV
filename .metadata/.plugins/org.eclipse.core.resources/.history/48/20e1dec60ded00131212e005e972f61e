@@ -1,0 +1,255 @@
+package rpl.shroomIOIO;
+
+import ioio.lib.api.DigitalOutput;
+import ioio.lib.api.PwmOutput;
+import ioio.lib.api.exception.ConnectionLostException;
+import ioio.lib.util.BaseIOIOLooper;
+import ioio.lib.util.IOIOLooper;
+import ioio.lib.util.android.IOIOActivity;
+import android.os.Bundle;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.ImageButton;
+import android.widget.SeekBar;
+import android.widget.ToggleButton;
+
+public class MenuAct extends IOIOActivity {
+	String SHROOM_PREF = IOIOSimpleApp.SHROOM_PREF;
+	SharedPreferences shroomPrefs = IOIOSimpleApp.shroomPrefs;
+	
+	private static SeekBar seekBar_;
+	private static ToggleButton buttonGlobal_;
+	private static ImageButton buttonAC_;
+	private static ImageButton buttonTV_;
+	private static ImageButton buttonCurt_;
+	private static ImageButton buttonLamp_;
+	public static Integer ACStatus_;
+	public static Integer TVStatus_;
+	public static Integer CurtStatus_;
+	public static Integer lampStatus_;
+	public static Integer globalStatus_;
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_menu);
+		
+		setupActionBar();
+		
+		shroomPrefs = getSharedPreferences("SHROOM_PREF",0);
+		ACStatus_  = shroomPrefs.getInt("AC_Status", 0);
+		TVStatus_  = shroomPrefs.getInt("TV_Status", 0);
+		CurtStatus_  = shroomPrefs.getInt("curt_Status", 0);
+		lampStatus_  = shroomPrefs.getInt("lamp_Status", 0);
+		globalStatus_  = shroomPrefs.getInt("global_Status", 0);		
+		
+		seekBar_ = (SeekBar) findViewById(R.id.SeekBar);
+		buttonAC_ = (ImageButton) findViewById(R.id.ac);
+		buttonTV_ = (ImageButton) findViewById(R.id.tv);
+		buttonCurt_ = (ImageButton) findViewById(R.id.curtain);
+		buttonLamp_ = (ImageButton) findViewById(R.id.lamp);
+		buttonGlobal_ = (ToggleButton) findViewById(R.id.global);
+	
+		//enableUi(false);
+	}
+	
+	static class Looper extends BaseIOIOLooper {
+		public static DigitalOutput Global_;
+		public static DigitalOutput AC_;
+		public static DigitalOutput Lamp_;
+		public static DigitalOutput TV_;
+		public static DigitalOutput CurtOpen_;
+		public static DigitalOutput CurtClose_;
+		public static PwmOutput pwmOutput_;
+
+		@Override
+		public void setup() throws ConnectionLostException {
+			Global_ = ioio_.openDigitalOutput(11, true);
+			Lamp_ = ioio_.openDigitalOutput(10, true);
+			AC_ = ioio_.openDigitalOutput(9, true);
+			TV_ = ioio_.openDigitalOutput(8,true);
+			CurtOpen_ = ioio_.openDigitalOutput(7, true);
+			CurtClose_ = ioio_.openDigitalOutput(6, true);
+			pwmOutput_ = ioio_.openPwmOutput(12, 100);
+			//enableUi(true);
+		}
+
+		@Override
+		public void loop() throws ConnectionLostException, InterruptedException {
+			pwmOutput_.setPulseWidth(300 + seekBar_.getProgress() * 2);
+			if(buttonAC_.isPressed()) {
+				if(ACStatus_ == 1)	{
+					AC_.write(true);
+					Thread.sleep(1000);
+					AC_.write(false);
+					ACStatus_ = 0;
+					saveAC();
+				}
+				else	{
+					AC_.write(true);
+					Thread.sleep(1000);
+					AC_.write(false);
+					ACStatus_ = 1;
+					saveAC();
+				}
+			}
+			
+			if(buttonLamp_.isPressed())	{
+				if(lampStatus_ == 1)	{
+					Lamp_.write(false);
+					lampStatus_ = 0;
+					saveLamp();
+					}
+					else {
+					Lamp_.write(true);
+					lampStatus_ = 1;
+					saveLamp();
+					}
+				Thread.sleep(500);
+			}
+			
+			if(buttonTV_.isPressed()) {
+				if(TVStatus_ == 1)	{
+					TV_.write(true);
+					Thread.sleep(1000);
+					TV_.write(false);
+					TVStatus_ = 0;
+					saveTV();
+				}
+				else	{
+					TV_.write(true);
+					Thread.sleep(1000);
+					TV_.write(false);
+					TVStatus_ = 1;
+					saveTV();
+				}
+			}
+			
+			if(buttonCurt_.isPressed()) {
+				if(CurtStatus_ == 1)	{
+					CurtOpen_.write(true);
+					Thread.sleep(3000);
+					CurtOpen_.write(false);
+					CurtStatus_ = 0;
+					saveCurt();
+				}
+				else	{
+					CurtClose_.write(true);
+					Thread.sleep(3000);
+					CurtClose_.write(false);
+					CurtStatus_ = 1;
+					saveCurt();
+				}
+			}
+			
+			if(buttonGlobal_.isChecked())	{
+				Global_.write(false);
+				globalStatus_ = 0;
+				saveGlobal();
+				TVStatus_ = 1;
+				ACStatus_ = 0;
+			}
+			else {
+				Global_.write(true);
+				globalStatus_ = 1;
+				saveGlobal();
+			}
+			Thread.sleep(10);
+		}
+
+		@Override
+		public void disconnected() {
+			//enableUi(false);
+		}
+	}
+
+	@Override
+	protected IOIOLooper createIOIOLooper() {
+		return new Looper();
+	}
+
+	/**
+	 * Set up the {@link android.app.ActionBar}.
+	 */
+	private void setupActionBar() {
+
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+
+	}
+	
+	/*
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.menu, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			// This ID represents the Home or Up button. In the case of this
+			// activity, the Up button is shown. Use NavUtils to allow users
+			// to navigate up one level in the application structure. For
+			// more details, see the Navigation pattern on Android Design:
+			//
+			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
+			//
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+	
+	private void enableUi(final boolean enable) {
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				toggleGlobal_.setEnabled(enable);
+				buttonAC_.setEnabled(enable);
+				buttonTV_.setEnabled(enable);
+				buttonCurt_.setEnabled(enable);
+				buttonLamp_.setEnabled(enable);
+			}
+		});
+	}*/
+	
+	public void saveAC() {
+		shroomPrefs = getSharedPreferences(SHROOM_PREF, 0);
+		Editor editor = shroomPrefs.edit();
+		editor.putInt("AC_Status", ACStatus_);
+		editor.commit();		
+	}
+	
+	public void saveTV() {
+		shroomPrefs = getSharedPreferences(SHROOM_PREF, 0);
+		Editor editor = shroomPrefs.edit();
+		editor.putInt("TV_Status", TVStatus_);
+		editor.commit();		
+	}
+	
+	public void saveCurt() {
+		shroomPrefs = getSharedPreferences(SHROOM_PREF, 0);
+		Editor editor = shroomPrefs.edit();
+		editor.putInt("curt_Status", CurtStatus_);
+		editor.commit();		
+	}
+	
+	public void saveLamp() {
+		shroomPrefs = getSharedPreferences(SHROOM_PREF, 0);
+		Editor editor = shroomPrefs.edit();
+		editor.putInt("lamp_Status", lampStatus_);
+		editor.commit();			
+	}
+	
+	public void saveGlobal() {
+		shroomPrefs = getSharedPreferences(SHROOM_PREF, 0);
+		Editor editor = shroomPrefs.edit();
+		editor.putInt("global_Status", globalStatus_);
+		editor.commit();			
+	}
+
+}

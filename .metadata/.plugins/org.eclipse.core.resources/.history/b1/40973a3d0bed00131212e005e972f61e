@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Shroom</string>
+    <string name="lux_label">Lux:</string>
+    <string name="cel_label">Celsius</string>
+    <string name="temp_label">Temperature:</string>
+    <string name="inte_label">Lux</string>
+    <string name="IR_label">IR</string>
+    <string name="title_activity_menu">Shroom</string>
+    <string name="seekbar_label">Move to unlock panel</string>
+    <string name="action_settings">Setup Color Base</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="setup_label">Choose button to setup color codes</string>
+    <string name="setup_title">setup Color Codes</string>
+    <string name="setup_alert">Setup new color codes will erase default color. Are you sure?</string>
+    <string name="yes_answer">YES</string>
+    <string name="no_answer">NO</string>
+    <string name="ON_answer">ON</string>
+    <string name="OFF_answer">OFF</string>
+    <string name="AC_Detected">AC Detected. Turn it on/off ?</string>
+    <string name="TV_Detected">TV Detected. Turn it on/off ?</string>
+    <string name="lamp_Detected">a Lamp Detected. Turn it on/off ?</string>
+    <string name="TV_Detected">Curtain Detected. Turn it on/off ?</string>
+    
+
+</resources>

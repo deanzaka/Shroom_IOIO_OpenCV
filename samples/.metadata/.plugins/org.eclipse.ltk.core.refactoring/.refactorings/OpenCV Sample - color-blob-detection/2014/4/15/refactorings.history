@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;color_blob_detection_surface_view.xml&apos; to &apos;layout&apos;&#x0D;&#x0A;- Original project: &apos;OpenCV Sample - color-blob-detection&apos;&#x0D;&#x0A;- Destination element: &apos;layout&apos;&#x0D;&#x0A;- Original element: &apos;color_blob_detection_surface_view.xml&apos;" description="Copy file" element1="res/layout/color_blob_detection_surface_view.xml" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1396914746861" target="/IOIOSimpleApp/res/layout" units="0" version="1.0"/>
+</session>

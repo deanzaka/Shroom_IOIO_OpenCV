@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:background="#00000000">
+	
+    <TextView  
+	    android:layout_width="fill_parent" 
+	    android:layout_height="wrap_content"
+	    android:layout_marginTop="20dp"
+	    android:textSize="20sp" 
+	    android:text="@string/seekbar_label"
+	    />
+	
+	<SeekBar
+		android:id="@+id/SeekBar"
+		android:layout_height="wrap_content"
+		android:layout_width="fill_parent"
+		android:max="1000"
+		android:progress="300"
+		/>
+    
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" 
+        android:paddingTop="40dp">
+		
+		<LinearLayout 
+		    android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:layout_alignParentLeft="true"
+        	android:orientation="horizontal"
+        	android:layout_marginLeft="40dp"
+        	>
+        	<ImageButton
+            	android:id="@+id/ac"
+            	android:layout_width="80dp"
+        		android:layout_height="80dp"
+        		android:scaleType="fitCenter"
+            	android:adjustViewBounds="true"
+            	android:src="@drawable/ac"
+            	/>
+       	</LinearLayout>
+       	
+		<LinearLayout 
+		    android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:layout_alignParentRight="true"
+        	android:orientation="horizontal"
+        	android:layout_marginRight="40dp" >
+        	<ImageButton
+            	android:id="@+id/tv"
+            	android:scaleType="fitCenter"
+            	android:layout_width="80dp"
+            	android:layout_height="80dp"
+            	android:adjustViewBounds="true"
+            	android:src="@drawable/tv" />
+		</LinearLayout>
+    </RelativeLayout>
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="50dp" >
+		
+	    <LinearLayout
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentLeft="true"
+	        android:orientation="horizontal"
+	        android:layout_marginLeft="40dp" >
+	
+	        <ImageButton
+	            android:id="@+id/lamp"
+	            android:layout_width="80dp"
+	            android:layout_height="80dp"
+	            android:scaleType="fitCenter"
+	            android:adjustViewBounds="true"
+	            android:src="@drawable/lamp" />
+	
+	    </LinearLayout>
+	    
+	    <LinearLayout
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:orientation="horizontal"
+	        android:layout_alignParentRight="true"
+	        android:layout_marginRight="40dp">	
+	        <ImageButton
+	            android:id="@+id/curtain"
+	            android:layout_width="80dp"
+	            android:layout_height="80dp"
+	            android:scaleType="fitCenter"
+	            android:adjustViewBounds="true"
+	            android:src="@drawable/curtain" />
+	    </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+        <ToggleButton
+        	android:id="@+id/global"
+        	android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"
+        	android:layout_centerHorizontal="true"
+        	android:layout_centerVertical="true"
+       		android:textOn="Global Off"
+       		android:textOff="Global On"
+       		android:layout_marginRight="30dp"
+       		android:layout_marginLeft="30dp"
+        	android:layout_marginTop="60dp"/>
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"/>
+     </RelativeLayout>
+
+</LinearLayout>

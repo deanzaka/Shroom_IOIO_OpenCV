@@ -1,0 +1,10 @@
+01:30:51 **** Auto Build of configuration Default for project OpenCV Tutorial 2 - Mixed Processing ****
+"D:\\Development\\android-ndk-r9d\\ndk-build.cmd" 
+Android NDK: WARNING:jni/Android.mk:mixed_sample: non-system libraries in linker flags: -lopencv_java    
+Android NDK:     This is likely to result in incorrect builds. Try using LOCAL_STATIC_LIBRARIES    
+Android NDK:     or LOCAL_SHARED_LIBRARIES instead to list the library dependencies of the    
+Android NDK:     current module    
+[armeabi-v7a] Install        : libmixed_sample.so => libs/armeabi-v7a/libmixed_sample.so
+
+01:30:52 Build Finished (took 410ms)
+

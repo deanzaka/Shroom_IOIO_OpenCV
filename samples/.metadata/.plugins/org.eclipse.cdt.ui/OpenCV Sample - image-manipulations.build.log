@@ -1,0 +1,9 @@
+17:13:47 **** Build of configuration Build (GNU) for project OpenCV Sample - image-manipulations ****
+make all 
+Cannot run program "make": Launching failed
+
+Error: Program "make" not found in PATH
+PATH=[C:/Program Files/Java/jdk1.7.0_55/bin/../jre/bin/server;C:/Program Files/Java/jdk1.7.0_55/bin/../jre/bin;C:/Program Files/Java/jdk1.7.0_55/bin/../jre/lib/amd64;C:\OpenCV2.0\bin;D:\Development\ADT;C:\android-adb;D:\Development\ADT;D:\Development\ADT\eclipse;]
+
+17:13:47 Build Finished (took 89ms)
+
